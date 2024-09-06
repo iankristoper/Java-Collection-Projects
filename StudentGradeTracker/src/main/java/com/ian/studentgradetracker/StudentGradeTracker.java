@@ -60,7 +60,9 @@ class StudentInformation
     @Override
     public String toString()
     {
-        return "God is good";
+        return "\n" + "Name: " + getName() + "\n" 
+                + "Id: " + getID() + "\n"
+                + "Grades: " + getGrades() + "\n";
     }
     
           
@@ -80,19 +82,23 @@ class GradesTracker
     //this method is for adding student information 
     public static void addStudent()
     {
+        System.out.println("");
         System.out.print("Enter student full name [First name, Last Name]: ");
         String studentName = scanner.nextLine();
         
-        System.out.println("Student ID number: " + id++);
+        System.out.println("Student ID number: " + ++id);
         int studentID = id;
+        
         
         System.out.print("Enter student final grade: ");
         float studentGrade = scanner.nextFloat();
+        scanner.nextLine();
         
         
         StudentInformation studentInformation = new StudentInformation(studentName, studentID, studentGrade);
         studentList.add(studentInformation);
         
+        System.out.println("");
         System.out.println("Student information is added successfully");
     }
     
@@ -103,18 +109,57 @@ class GradesTracker
     {
         System.out.print("Enter student ID: ");
         int searchID = scanner.nextInt();
+        scanner.nextLine();
         
         for(StudentInformation copy : studentList)
         {
             if(copy.getID() == searchID)
             {
-                System.out.print("Enter ");
+                boolean isUpdateGradesRunning = true;
+                
+                while(isUpdateGradesRunning)
+                {
+                    System.out.println("");
+                    System.out.println("Select what you want to update");
+                    System.out.println("[1] Name");
+                    System.out.println("[2] Grades");
+                    System.out.println("[3] Back");
+                    System.out.print("Enter your choice: ");
+                    int updateChoice = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    switch(updateChoice)
+                    {
+                        case 1:
+                            System.out.print("Enter student new full name: ");
+                            String updatedName = scanner.nextLine();  //get the updated name
+                            copy.setName(updatedName);  //store the updated name
+                            break;
+                            
+                        case 2:
+                            System.out.print("Enter student new final grades: ");
+                            float updatedGrades = scanner.nextFloat();
+                            scanner.nextLine();
+                            copy.setGrades(updatedGrades);
+                            break;
+                            
+                        case 3:
+                            isUpdateGradesRunning = false;
+                            break;
+                            
+                        default:
+                            System.out.println("Invalid choice, try again");
+                            break;                                                                      
+                                                                              
+                    }
+                }
+                
+                System.out.println("Update complete!");
                 return;
             }
         }
         
-        System.out.println("Invalid ID");         
-            
+        System.out.println("Invalid ID");   
     }
     
     
@@ -132,18 +177,29 @@ class GradesTracker
         }
         
         System.out.println("================================");
+        System.out.println("");
     }
     
     
     
     public static void searchStudent()
     {
+        System.out.print("Enter student ID: ");
+        int searchID = scanner.nextInt();
         
+        for(StudentInformation copy : studentList)
+        {
+            if(copy.getID() == searchID)
+            {
+                System.out.println(copy);
+                System.out.println("");
+                return;
+            }
+        }
+        
+        System.out.println("Invalid ID");
     }
-    
-    
-        
-        
+          
 }
 
 
@@ -168,30 +224,35 @@ public class StudentGradeTracker
         {
             System.out.println("[1] Add Student");
             System.out.println("[2] Update Grades");
-            System.out.println("[3] View Grades");
+            System.out.println("[3] View Records");
             System.out.println("[4] Search Students");
             System.out.println("[5] Exit");
             System.out.println("");
             
-            System.out.println("Please select your choice");
+            System.out.print("Please select your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
             
             switch(choice)
             {
                 case 1:
+                    GradesTracker.addStudent();
                     break;
                     
                 case 2:
+                    GradesTracker.updateGrades();
                     break;
                     
                 case 3:
+                    GradesTracker.viewGrades();
                     break;
                     
                 case 4:
+                    GradesTracker.searchStudent();
                     break;
                     
                 case 5:
+                    isMainProgramRunning = false;
                     break;
                     
                 default:
