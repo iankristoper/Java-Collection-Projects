@@ -63,7 +63,7 @@ class TodoData
     @Override 
     public String toString()
     {
-        return "TodoList ID: ";
+        return "TodoList ID: " + getID() + "\n" + "Task name: " + getName() + "\n\n";
     }
         
 }
@@ -76,6 +76,7 @@ class TodoFunction
     private static Scanner scanner = new Scanner(System.in);
     private static List<TodoData> todoStorage = new LinkedList<TodoData>();
     static int id = 1000;
+    
     
     
     //this method is for adding the task
@@ -92,12 +93,50 @@ class TodoFunction
         
         System.out.print("Task status [1 for Done] or [0 for In progress]: ");
         int todoStatus = scanner.nextInt();
+        scanner.nextLine();
         
         
         //add all the data
-        TodoData 
+        TodoData todo = new TodoData(todoID, todoName, todoDescription, todoStatus);
+        todoStorage.add(todo);  //add to the todoStorage
+        
+        System.out.println("Task added successfully!");               
+    }
+       
+    
+    
+    //this method is for removing the task
+    public static void removeTask()
+    {
+        System.out.print("Enter the task ID to remove: ");
+        int removeID = scanner.nextInt();
+        scanner.nextLine();
         
         
+        for(TodoData copy : todoStorage)
+        {
+            if(removeID == copy.getID())
+            {
+                todoStorage.remove(removeID);
+                System.out.println("Task removed successfully!");
+                return;
+            }
+        }
+        
+        System.out.println("ID not found, try again");      
+    }
+    
+    
+    
+    //this method is for viewing task
+    public static void viewTask()
+    {
+        for(TodoData copy : todoStorage)
+        {
+            System.out.println(copy);
+        }
+        
+        System.out.println("===========================");
     }
     
     
@@ -134,16 +173,22 @@ public class TodoList
             
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
+            
+            System.out.println("");
             
             switch(choice)
             {
                 case 1:
+                    TodoFunction.addTask();
                     break;
                     
                 case 2:
+                    TodoFunction.removeTask();
                     break;
                     
                 case 3:
+                    TodoFunction.viewTask();
                     break;
                     
                 case 4:
@@ -164,6 +209,8 @@ public class TodoList
                     break;
             }
         }
+        
+        System.out.println("Thank your using!");
         
         scanner.close();
     }
