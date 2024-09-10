@@ -117,7 +117,7 @@ class TodoFunction
         {
             if(removeID == copy.getID())
             {
-                todoStorage.remove(removeID);
+                todoStorage.remove(copy);
                 System.out.println("Task removed successfully!");
                 return;
             }
@@ -131,16 +131,60 @@ class TodoFunction
     //this method is for viewing task
     public static void viewTask()
     {
+        if(todoStorage == null)
+        {
+            System.out.println("Storage is empty");
+            return;
+        }
+        
+        
         for(TodoData copy : todoStorage)
         {
             System.out.println(copy);
         }
         
         System.out.println("===========================");
+    } 
+    
+    
+    
+    //this method is for prioritizing the task
+    public static void prioritizeTask()
+    {
+        System.out.print("Enter task ID to prioritize: ");
+        int priorityID = scanner.nextInt();
+        scanner.nextLine();
+        
+        for(TodoData copy : todoStorage)
+        {           
+            if(todoStorage != null)
+            {
+                if(copy.getID() == priorityID)
+                {
+                    todoStorage.remove(copy);   //remove the object to its current location
+                    todoStorage.addFirst(copy); //add the object to the first order
+                    
+                    System.out.println("Prioritization done.");
+                    return;
+                }
+            } 
+            else 
+            {
+                System.out.println("Todo storage is empty");
+            }
+        }
+        
+        System.out.println("ID doesnt match with the current data, try again");
     }
     
     
     
+    //this method is for completing the task
+    public static void completeTask()
+    {
+        
+    }
+       
 }
 
 
@@ -192,6 +236,7 @@ public class TodoList
                     break;
                     
                 case 4:
+                    TodoFunction.prioritizeTask();
                     break;
                     
                 case 5:
