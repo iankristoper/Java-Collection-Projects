@@ -63,7 +63,9 @@ class TodoData
     @Override 
     public String toString()
     {
-        return "TodoList ID: " + getID() + "\n" + "Task name: " + getName() + "\n\n";
+        return "TodoList ID: " + getID() + 
+                "\n" + "Task name: " + getName() + "\n" +
+                "Todo Status: " + getStatus() + "\n\n";
     }
         
 }
@@ -182,11 +184,41 @@ class TodoFunction
     //this method is for completing the task
     public static void completeTask()
     {
+        System.out.print("Enter task ID to complete: ");
+        int completeID = scanner.nextInt();
+        scanner.nextLine();
         
+        for(TodoData copy : todoStorage)
+        {
+            if(copy.getID() == completeID)
+            {
+                todoStorage.remove(copy);   //remove object to the linkedlist
+                todoStorage.addLast(copy);  //but after removing add the linkedlist to the last
+                
+                copy.setStatus(1);  //set the status to zero
+                
+                System.out.println("Task Completed!");
+                return;
+            }
+        }
+        
+        System.out.println("ID doesnt match any task");
+    }
+    
+    
+    
+    //this method is for clearing all task
+    public static void clearList()
+    {
+        for(TodoData copy : todoStorage)
+        {
+            todoStorage.remove(copy);            
+        }
+        
+        System.out.println("Todo list cleared!");
     }
        
 }
-
 
 
 
@@ -240,9 +272,11 @@ public class TodoList
                     break;
                     
                 case 5:
+                    TodoFunction.completeTask();
                     break;
                     
                 case 6:
+                    TodoFunction.clearList();
                     break;
                     
                 case 7:
