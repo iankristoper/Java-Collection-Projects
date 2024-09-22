@@ -117,6 +117,17 @@ A system designed to store unique keywords for a search engine. The HashSet ensu
 ### 1. Clone the repository:
    ```bash
    git clone https://github.com/your-repository-url.git
+   ```
 ### 2. Navigate to the specific project folder.
+### 3. Compile and run the Java program using your preferred IDE or command line:
+   ```bash
+   javac Main.java
+   java Main
+```
+
+---
+
+## Contributing
+Feel free to fork this repository and submit pull requests with improvements or additional projects.
 
 
