@@ -50,7 +50,17 @@ class KeywordData
     }
     
     
+    @Override
+    public boolean equals() {
+        
+    }
     
+    
+    
+    @Override 
+    public int hashCode() {
+        
+    }
 }
 
 
@@ -240,6 +250,7 @@ public class KeywordSearchSystem
             }
             
         }
+        
         
         scanner.close();
     }
