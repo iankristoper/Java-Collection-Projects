@@ -130,7 +130,7 @@ A system designed to store unique keywords for a search engine. The HashSet ensu
 ## Contributing
 Feel free to fork this repository and submit pull requests with improvements or additional projects.
 
---
+---
 
 ## License
 
