@@ -114,7 +114,7 @@ A system designed to store unique keywords for a search engine. The HashSet ensu
 ---
 
 ## How to Run These Projects
-1. Clone the repository:
+### 1. Clone the repository:
    ```bash
    git clone https://github.com/your-repository-url.git
 
