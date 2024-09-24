@@ -1,4 +1,4 @@
-# Java Collection Projects 
+# Java Collection Projects  
 
 This repository contains a collection of Java projects aimed at practicing Java fundamentals and Object-Oriented Programming (OOP) concepts. Below is a description of each project, detailing the interfaces, implementations, and features.
 
