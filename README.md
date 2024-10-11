@@ -4,7 +4,7 @@ This repository contains a collection of Java projects aimed at practicing Java 
 
 ---
 
-## 1. Student Grade Tracker 
+## 1. Student Grade Tracker  
 
 **Interface**: List  
 **Implementation**: ArrayList  
